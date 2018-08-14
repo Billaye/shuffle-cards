@@ -1,3 +1,3 @@
-Hello, 
+Given a standard deck - Shuffle the cards.
 
-This is a test
+Implemented in React

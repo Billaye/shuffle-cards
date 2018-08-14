@@ -27,12 +27,16 @@
 }
 
 .cards-section {
-  margin-top:auto;
-  margin-left:500px;
-  display: grid;
-  grid-template-columns: 50px 50px 50px 50px 50px;
-  grid-template-rows: 100px 100px 100px 100px 100px;
+  margin:auto 150px auto;
   
+  /* display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px;
+  grid-template-rows: 100px 100px 100px 100px 100px; */
+  
+  display:flex;
+  /* flex-direction: defaults left to right */
+  flex-wrap:wrap;
+
 }
 
 button {
