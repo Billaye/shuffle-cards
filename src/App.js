@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import FlipMove from 'react-flip-move';
 
 
 function standardDeck() {
@@ -34,9 +35,22 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 
-function RenderCard(props) {
-  
-  function convertToUniEntity(suit) {
+function ButtonControls(props) {  
+    return (
+      <span>
+        <button className="shuffle" onClick={props.shuffle}>Shuffle</button>
+        <button className="reset" onClick={props.reset}>Reset</button>
+      </span>
+    )
+}
+
+class RenderCard extends React.Component {
+  constructor(props){
+    super(props);
+    this.suit = this.convertToUniEntity(props.suit)
+    this.cardStyle = 'card card-' + props.colour;
+  }
+  convertToUniEntity(suit) {
     var entity = 0;
     switch (suit) {
       case 'spade': {
@@ -58,39 +72,36 @@ function RenderCard(props) {
     return entity;
   }
 
-
-  var suit = convertToUniEntity(props.suit),
-      cardStyle = 'card card-' + props.colour;
-  return (
-      <div className={cardStyle}>
-        <span className="card-suit card-suit-top">{suit}</span> 
-          <span className="card-number">{props.value}</span>   
-        <span className="card-suit card-suit-bottom">{suit}</span>
-      </div>
-  )
-}
-
-function ButtonControls(props) {  
+  render() {
     return (
-      <span>
-        <button className="shuffle" onClick={props.shuffle}>Shuffle</button>
-        <button className="reset" onClick={props.reset}>Reset</button>
-      </span>
+      <div key={this.props.key} className={this.cardStyle}>
+        <span className="card-suit card-suit-top">{this.suit}</span> 
+          <span className="card-number">{this.props.value}</span>   
+        <span className="card-suit card-suit-bottom">{this.suit}</span>
+      </div>
     )
+  }
 }
 
-class Cards extends React.Component {
+class Cards extends React.Component {   
     render() {          
-      return (         
-         this.props.deck.map((card) => {                         
-          return ( 
+      return (       
+        <FlipMove typeName={null}        
+        staggerDurationBy={20}
+        staggerDelayBy={20}>          
+         {this.props.deck.map((card) => {                         
+          return (                   
               <RenderCard 
                 key={card.value + '' + card.suit} 
                 suit={card.suit} 
                 colour={card.color} 
-                value={card.value}/> 
-          )          
-      }))
+                value={card.value}                
+                />                                                                    
+          )           
+                   
+      })}
+      </FlipMove>       
+      )
     }
 
 
@@ -100,10 +111,11 @@ class App extends Component {
   constructor(props) {
     super(props);    
     this.state = {
-      deck: standardDeck()
+      deck: standardDeck(),
+      updated: false
     };
     this.shuffle = this.shuffle.bind(this); 
-    this.reset = this.reset.bind(this); 
+    this.reset = this.reset.bind(this);    
   }
   
 
@@ -127,11 +139,10 @@ class App extends Component {
   reset() {
     // Remove the shuffled deck
     this.setState({
-      deck: standardDeck()
+      deck: standardDeck()      
     })
 
   }
-
   // Move deck rendering up here
   render() {
     return (
@@ -143,8 +154,8 @@ class App extends Component {
         <div className="card-controller">
           <ButtonControls shuffle={this.shuffle} reset={this.reset}/>
         </div>
-        <div className="cards-section">        
-          <Cards deck={this.state.deck}/>
+        <div className="cards-section">                  
+            <Cards deck={this.state.deck} />                     
         </div>
       </div>
     );
