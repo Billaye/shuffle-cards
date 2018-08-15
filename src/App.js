@@ -89,9 +89,7 @@ class Cards extends React.Component {
                 suit={card.suit} 
                 colour={card.color} 
                 value={card.value}/> 
-          )
-
-             
+          )          
       }))
     }
 
@@ -134,15 +132,13 @@ class App extends Component {
 
   }
 
-
-
   // Move deck rendering up here
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Shuffle some cards</h1>
+          <h1 className="App-title">Shuffle cards</h1>
         </header>        
         <div className="card-controller">
           <ButtonControls shuffle={this.shuffle} reset={this.reset}/>
