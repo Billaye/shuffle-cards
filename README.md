@@ -6,6 +6,6 @@ TODO:
 
  1. ~~Add Animation, use react css transition group~~ Used FlipMove instead
  
- 2. Fix sizing of cards and block
+ 2. ~Fix sizing of cards and block~
  
  3. Add unit tests
