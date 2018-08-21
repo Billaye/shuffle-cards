@@ -1,83 +1,78 @@
+/* Global Style */
 .App {
-  text-align: center;
+  text-align: center;   
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/*
+  Component specific styling
+*/
+.App-header {      
+  color:white;
+  height: 75px;
+  padding: 10px;  
+  background: linear-gradient(to bottom, #7d7e7d 0%,#0e0e0e 100%);
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
 .App-title {
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-.card-controller {
-  padding-bottom: 20px;
-}
-
-.cards-section {
-  margin:auto 150px auto;
-  position:'relative';
-  /* display: grid;
-  grid-template-columns: 50px 50px 50px 50px 50px;
-  grid-template-rows: 100px 100px 100px 100px 100px; */
-  
-  display:flex;
-  /* flex-direction: defaults left to right */
-  flex-wrap:wrap;
-
-}
-
 button {
-  background-color: #4CAF50; /* Green */
-  border: rounded;
+  background-color: #4CAF50; /* Green */  
   color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
+  margin: 1%;  
   display: inline-block;
-  font-size: 16px;
-  margin: 5px 10px
+  font-size: 16px;  
+  border-radius:3px;
+  width:90px;
+  height:50px;
+}
+
+
+/* Card-section */
+.cards-section {
+  margin-left: auto;
+  margin-right: auto;    
+  width:800px;
+  display: flex;  
+  flex-wrap: wrap;
+  justify-content: flex-start; 
 }
 
 .card {
-  height: 75px;
-  width: 37.5px;
-  border: 2px solid black;  
+  border: 1px solid grey;
+  border-radius:5px;
+  box-shadow: 3px 2px #888888;
+  margin: 0 1% 1% 0;
+  width:5em;
+  height:100px;
+  position:relative;
 }
+
+.card-suit,
+.card-number {
+  display:block;
+}
+
 .card-red {
   color:red;
 }
 
-.card-suit-top,
-.card-suit-bottom {
-  display: block;
+.card-number {
+  margin: 0;  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
 .card-suit-top {
-  margin-right: 50%
+  position: absolute;
+  top:0;
+  left:0;
 }
 
 .card-suit-bottom {
-  margin-left: 50%
-}
-
-.card-number {
-  margin-top: 50%;
-  color:black;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  position: absolute;
+  bottom:0;
+  right:0;
 }
