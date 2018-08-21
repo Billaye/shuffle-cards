@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import FlipMove from 'react-flip-move';
 
@@ -36,11 +35,11 @@ function getRandomIntInclusive(min, max) {
 }
 
 function ButtonControls(props) {  
-    return (
-      <span>
+    return (      
+      <div className="card-controller">
         <button className="shuffle" onClick={props.shuffle}>Shuffle</button>
-        <button className="reset" onClick={props.reset}>Reset</button>
-      </span>
+        <button className="reset" onClick={props.reset}>Reset</button>      
+      </div>
     )
 }
 
@@ -86,7 +85,7 @@ class RenderCard extends React.Component {
 class Cards extends React.Component {   
     render() {          
       return (       
-        <FlipMove typeName={null}        
+        <FlipMove className="cards-section"      
         staggerDurationBy={20}
         staggerDelayBy={20}>          
          {this.props.deck.map((card) => {                         
@@ -147,16 +146,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+        <header className="App-header">          
           <h1 className="App-title">Shuffle cards</h1>
-        </header>        
-        <div className="card-controller">
-          <ButtonControls shuffle={this.shuffle} reset={this.reset}/>
-        </div>
-        <div className="cards-section">                  
-            <Cards deck={this.state.deck} />                     
-        </div>
+        </header>
+        <div className="body-section">
+          <ButtonControls shuffle={this.shuffle} reset={this.reset}/>                                   
+          <Cards deck={this.state.deck} />                               
+        </div>                
       </div>
     );
   }
